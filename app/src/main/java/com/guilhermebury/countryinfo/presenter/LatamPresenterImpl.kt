@@ -8,7 +8,12 @@ class PresenterImpl(private val view: Contract.View) : Contract.Presenter {
     private lateinit var graphQlService: GraphQLService
 
     override fun getCountry(countryCode: String) {
-        graphQlService = GraphQLService(view)
+        view.showLoading()
+
+        graphQlService = GraphQLService()
         graphQlService.fetchCountry(countryCode)
+
+        view.onReceiveCountry(GraphQLService.country)
+        view.hideLoading()
     }
 }
