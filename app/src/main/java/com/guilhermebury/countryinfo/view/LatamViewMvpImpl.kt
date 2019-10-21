@@ -21,7 +21,8 @@ import kotlinx.android.synthetic.main.latam_view_mvp.view.*
 * 7 Send notifications when flag is clicked
 * 8 Register activity as listener of the view
 * */
-class LatamViewMvpImpl(inflater: LayoutInflater, parent: ViewGroup?): Contract.View {
+class LatamViewMvpImpl(inflater: LayoutInflater, parent: ViewGroup?):
+    Contract.View {
 
     private val listeners = ArrayList<Contract.Listener>(1)
     private var countryCode = ""
@@ -81,7 +82,7 @@ class LatamViewMvpImpl(inflater: LayoutInflater, parent: ViewGroup?): Contract.V
     }
 
     override fun onReceiveCountry(country: CountryQuery.Country) {
-
+        
         rootView.countryNameText.visibility = View.VISIBLE
         rootView.countryNativeText.visibility = View.VISIBLE
         rootView.countryContinentText.visibility = View.VISIBLE

@@ -14,7 +14,7 @@ interface Contract {
         fun unregisterListener(listener: Listener)
     }
 
-    interface Presenter {
+    interface LatamPresenter {
         fun getCountry(countryCode: String)
     }
 

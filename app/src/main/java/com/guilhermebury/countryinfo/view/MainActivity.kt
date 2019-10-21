@@ -10,10 +10,10 @@ import com.guilhermebury.countryinfo.presenter.LatamPresenterImpl
 class MainActivity : AppCompatActivity(), Contract.Listener {
 
     override fun onFlagClicked(countryCode: String) {
-        presenter.getCountry(countryCode)
+        latamPresenter.getCountry(countryCode)
     }
 
-    private lateinit var presenter: Contract.Presenter
+    private lateinit var latamPresenter: Contract.LatamPresenter
     //private lateinit var country: Country
 
     private lateinit var latamViewMvpImpl: LatamViewMvpImpl
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), Contract.Listener {
         latamViewMvpImpl = LatamViewMvpImpl(LayoutInflater.from(this), null) //Activity doesn't have a root view
         latamViewMvpImpl.registerListener(this)
 
-        presenter = LatamPresenterImpl(latamViewMvpImpl)
+        latamPresenter = LatamPresenterImpl(latamViewMvpImpl)
 
         setContentView(latamViewMvpImpl.rootView)
     }

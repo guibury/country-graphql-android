@@ -1,6 +1,5 @@
 package com.guilhermebury.countryinfo.service
 
-import android.content.Intent
 import android.util.Log
 import com.apollographql.apollo.ApolloClient
 import com.guilhermebury.countryinfo.CountryQuery
@@ -10,10 +9,9 @@ import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
 import com.guilhermebury.countryinfo.contract.Contract
-import com.guilhermebury.countryinfo.presenter.LatamPresenterImpl
 import org.jetbrains.annotations.NotNull
 
-class GraphQLService() {
+class GraphQLService(val view: Contract.View) {
 
     private val TAG = "gbury.countryinfo"
     private val BASE_URL = "https://countries.trevorblades.com/"
@@ -64,7 +62,8 @@ class GraphQLService() {
                         dataResponse.emoji(),
                         dataResponse.continent(),
                         dataResponse.languages())
-                    //view.onReceiveCountry(toCountry(data))
+
+                    view.onReceiveCountry(country)
                 }
 
                 override fun onFailure(e: ApolloException) {
