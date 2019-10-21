@@ -13,7 +13,7 @@ import com.guilhermebury.countryinfo.contract.Contract
 import com.guilhermebury.countryinfo.presenter.LatamPresenterImpl
 import org.jetbrains.annotations.NotNull
 
-class GraphQLService(val view: Contract.View) {
+class GraphQLService() {
 
     private val TAG = "gbury.countryinfo"
     private val BASE_URL = "https://countries.trevorblades.com/"
