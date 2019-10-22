@@ -1,10 +1,10 @@
-package com.guilhermebury.countryinfo.view
+package com.guilhermebury.countryinfo.presenter
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.guilhermebury.countryinfo.contract.Contract
-import com.guilhermebury.countryinfo.presenter.LatamPresenterImpl
+import com.guilhermebury.countryinfo.view.LatamViewMvp
 
 //Icons made by https://www.flaticon.com/authors/freepik from https://www.flaticon.com/
 class MainActivity : AppCompatActivity(), Contract.Listener {

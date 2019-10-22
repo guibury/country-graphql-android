@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.guilhermebury.countryinfo"
         minSdkVersion 19
@@ -38,7 +38,7 @@ dependencies {
     implementation 'com.apollographql.apollo:apollo-rx2-support:1.0.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
     //Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.30.1-eap13'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
     //Test
     testImplementation 'org.jetbrains:annotations:13.0'
     testImplementation 'junit:junit:4.12'
