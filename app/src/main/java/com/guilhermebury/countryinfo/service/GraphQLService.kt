@@ -8,10 +8,11 @@ import okhttp3.OkHttpClient
 import com.apollographql.apollo.exception.ApolloException
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.api.Response
-import com.guilhermebury.countryinfo.contract.Contract
 import org.jetbrains.annotations.NotNull
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
-class GraphQLService(val view: Contract.View) {
+class GraphQLService {
 
     private val TAG = "gbury.countryinfo"
     private val BASE_URL = "https://countries.trevorblades.com/"
@@ -45,41 +46,31 @@ class GraphQLService(val view: Contract.View) {
             "  }\n" +
             "}"
 
+    suspend fun fetchCountry(countryCode: String) : Country {
 
-    //TODO observable
-    fun fetchCountry(countryCode: String) {
+        return suspendCoroutine { continuation ->
+            apolloClient.query(CountryQuery.builder().code(countryCode).build())
+                .enqueue(object : ApolloCall.Callback<Data>() {
+                    override fun onResponse(@NotNull response: Response<Data>) {
 
-        apolloClient.query(CountryQuery.builder().code(countryCode).build())
-            .enqueue(object : ApolloCall.Callback<Data>() {
-                override fun onResponse(@NotNull response: Response<Data>) {
-                    data = response
-                    Log.d(TAG, data.toString())
+                        data = response
+                        Log.d(TAG, data.toString())
+                        val dataResponse = data.data()?.country()
+                        country = Country(dataResponse!!.__typename(),
+                            dataResponse.name(),
+                            dataResponse.native_(),
+                            dataResponse.emoji(),
+                            dataResponse.continent(),
+                            dataResponse.languages())
 
-                    val dataResponse = data.data()?.country()
-                    country = Country(dataResponse!!.__typename(),
-                        dataResponse.name(),
-                        dataResponse.native_(),
-                        dataResponse.emoji(),
-                        dataResponse.continent(),
-                        dataResponse.languages())
+                        continuation.resume(country)
+                    }
 
-                    view.onReceiveCountry(country)
-                }
+                    override fun onFailure(e: ApolloException) {
+                        Log.e(TAG, e.localizedMessage)
+                    }
+                })
+        }
 
-                override fun onFailure(e: ApolloException) {
-                    Log.e(TAG, e.localizedMessage)
-                }
-            })
     }
-
-//    fun toCountry(dataResponse: Response<Data>) {
-//        val data = dataResponse.data()?.country()
-//
-//        country = Country(data!!.__typename(),
-//                data.name(),
-//                data.native_(),
-//                data.emoji(),
-//                data.continent(),
-//                data.languages())
-//    }
 }

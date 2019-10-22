@@ -9,7 +9,7 @@ interface Contract {
         fun hideLoading()
         fun showError(errorMessage: String)
         fun onReceiveCountry(country: Country)
-        fun onFlagClicked(view: android.view.View?)
+        fun onFlagClicked(countryCode: String)
         fun registerListener(listener: Listener)
         fun unregisterListener(listener: Listener)
     }

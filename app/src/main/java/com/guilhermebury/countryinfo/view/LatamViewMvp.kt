@@ -21,24 +21,31 @@ import kotlinx.android.synthetic.main.latam_view_mvp.view.*
 * 7 Send notifications when flag is clicked
 * 8 Register activity as listener of the view
 * */
-class LatamViewMvpImpl(inflater: LayoutInflater, parent: ViewGroup?):
-    Contract.View {
+
+class LatamViewMvp(inflater: LayoutInflater, parent: ViewGroup?): Contract.View {
 
     private val listeners = ArrayList<Contract.Listener>(1)
-    private var countryCode = ""
-    val rootView: View = inflater.inflate(R.layout.latam_view_mvp, parent, false)
+
+    private val rootView: View = inflater.inflate(R.layout.latam_view_mvp, parent, false)
 
     init {
-        rootView.argentinaButton.setOnClickListener {onFlagClicked(rootView.argentinaButton)}
-//        rootView.brazilButton.setOnClickListener {onClick()}
-//        rootView.chileButton.setOnClickListener {onClick()}
-//        rootView.paraguayButton.setOnClickListener {onClick()}
-//        rootView.peruButton.setOnClickListener {onClick()}
-//        rootView.uruguayButton.setOnClickListener {onClick()}
-
+        rootView.argentinaButton.setOnClickListener {onFlagClicked(Countries.ARGENTINA.code)}
+        rootView.brazilButton.setOnClickListener {onFlagClicked(Countries.BRAZIL.code)}
+        rootView.chileButton.setOnClickListener {onFlagClicked(Countries.CHILE.code)}
+        rootView.paraguayButton.setOnClickListener {onFlagClicked(Countries.PARAGUAY.code)}
+        rootView.peruButton.setOnClickListener {onFlagClicked(Countries.PERU.code)}
+        rootView.uruguayButton.setOnClickListener {onFlagClicked(Countries.URUGUAY.code)}
     }
 
-    private fun listeners() {
+    override fun onFlagClicked(countryCode: String) {
+        listeners(countryCode)
+    }
+
+    fun getRootView(): View {
+        return rootView
+    }
+
+    private fun listeners(countryCode: String) {
         for (listener in listeners) {
             listener.onFlagClicked(countryCode)
         }
@@ -56,25 +63,12 @@ class LatamViewMvpImpl(inflater: LayoutInflater, parent: ViewGroup?):
         return rootView.context
     }
 
-    override fun onFlagClicked(view: View?) {
-
-        when(view) {
-            rootView.argentinaButton -> countryCode = Countries.ARGENTINA.code
-            rootView.brazilButton -> countryCode = Countries.BRAZIL.code
-            rootView.chileButton -> countryCode = Countries.CHILE.code
-            rootView.paraguayButton -> countryCode = Countries.PARAGUAY.code
-            rootView.peruButton -> countryCode = Countries.PERU.code
-            rootView.uruguayButton -> countryCode = Countries.URUGUAY.code
-        }
-        listeners()
-    }
-
     override fun showLoading() {
-        Toast.makeText(context(), "Too lazy to make a loading...", Toast.LENGTH_SHORT).show()
+        rootView.progress.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        rootView.progress.visibility = View.GONE
     }
 
     override fun showError(errorMessage: String) {
@@ -82,7 +76,6 @@ class LatamViewMvpImpl(inflater: LayoutInflater, parent: ViewGroup?):
     }
 
     override fun onReceiveCountry(country: CountryQuery.Country) {
-        
         rootView.countryNameText.visibility = View.VISIBLE
         rootView.countryNativeText.visibility = View.VISIBLE
         rootView.countryContinentText.visibility = View.VISIBLE
