@@ -7,5 +7,8 @@ enum class Countries(val code: String) {
     CHILE("CL"),
     PARAGUAY("PY"),
     PERU("PE"),
-    URUGUAY("UY")
+    URUGUAY("UY"),
+    CANADA("CA"),
+    MEXICO("MX"),
+    USA("US")
 }
