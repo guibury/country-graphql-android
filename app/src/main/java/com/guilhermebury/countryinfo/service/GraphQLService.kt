@@ -11,17 +11,12 @@ import org.jetbrains.annotations.NotNull
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class GraphQLService {
+class ApolloRequest {
 
     private val tag = "gbury.countryinfo"
     private val baseUrl = "https://countries.trevorblades.com/"
     private val okHttpClient = OkHttpClient.Builder().build()
     private val apolloClient = ApolloClient.builder().serverUrl(baseUrl).okHttpClient(okHttpClient).build()
-    private lateinit var data: Response<Data>
-
-    companion object {
-        lateinit var country: Country
-    }
 
     suspend fun fetchCountry(countryCode: String) : Country {
 
@@ -30,17 +25,8 @@ class GraphQLService {
                 .enqueue(object : ApolloCall.Callback<Data>() {
                     override fun onResponse(@NotNull response: Response<Data>) {
 
-                        data = response
-                        Log.d(tag, data.toString())
-                        val dataResponse = data.data()?.country()
-                        country = Country(dataResponse!!.__typename(),
-                            dataResponse.name(),
-                            dataResponse.native_(),
-                            dataResponse.emoji(),
-                            dataResponse.continent(),
-                            dataResponse.languages())
-
-                        continuation.resume(country)
+                        Log.d(tag, response.toString())
+                        continuation.resume(ApolloParse().parseCountry(response))
                     }
 
                     override fun onFailure(e: ApolloException) {
@@ -48,5 +34,19 @@ class GraphQLService {
                     }
                 })
         }
+    }
+}
+
+class ApolloParse {
+
+    fun parseCountry(response: Response<Data>) : Country {
+        val dataResponse = response.data()?.country()
+
+        return Country(dataResponse!!.__typename(),
+            dataResponse.name(),
+            dataResponse.native_(),
+            dataResponse.emoji(),
+            dataResponse.continent(),
+            dataResponse.languages())
     }
 }
