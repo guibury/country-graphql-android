@@ -39,6 +39,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.2'
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+    //Koin
+    implementation "org.koin:koin-android:2.0.1"
     //Test
     testImplementation 'org.jetbrains:annotations:13.0'
     testImplementation 'junit:junit:4.12'
