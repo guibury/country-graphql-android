@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.guilhermebury.countryinfo.contract.Contract
 import com.guilhermebury.countryinfo.view.LatamViewMvp
+import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 //Icons made by https://www.flaticon.com/authors/freepik from https://www.flaticon.com/
 class MainActivity : AppCompatActivity(), Contract.Listener {
