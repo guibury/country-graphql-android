@@ -86,6 +86,6 @@ class LatamViewMvp(inflater: LayoutInflater, parent: ViewGroup?): Contract.View 
         rootView.countryNativeText.text = country.native_()
         rootView.countryContinentText.text = country.continent()?.name()
         rootView.countryEmojiText.text = country.emoji()
-        rootView.countryLanguageText.text = country.languages()?.get(0)?.name()
+        rootView.countryLanguageText.text = country.languages()?.firstOrNull()?.name()
     }
 }
