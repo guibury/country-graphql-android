@@ -24,8 +24,7 @@ class ApolloRequest {
             apolloClient.query(builder().code(countryCode).build())
                 .enqueue(object : ApolloCall.Callback<Data>() {
                     override fun onResponse(@NotNull response: Response<Data>) {
-
-                        Log.d(tag, response.toString())
+                        Log.d(tag, response.data().toString())
                         continuation.resume(ApolloParse().parseCountry(response))
                     }
 
