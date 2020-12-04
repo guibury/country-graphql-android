@@ -1,12 +1,12 @@
 package com.guilhermebury.countryinfo.flags
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.guilhermebury.countryinfo.helper.ScreensNavigator
+import com.guilhermebury.countryinfo.BaseActivity
+import com.guilhermebury.countryinfo.helper.navigation.ScreensNavigator
 
 //Icons made by https://www.flaticon.com/authors/freepik from https://www.flaticon.com/
-class FlagsActivity : AppCompatActivity(), FlagsViewMvp.Listener {
+class FlagsActivity : BaseActivity(), FlagsViewMvp.Listener {
 
     private lateinit var flagsViewMvp: FlagsViewMvp
     private lateinit var screensNavigator: ScreensNavigator

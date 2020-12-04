@@ -2,17 +2,16 @@ package com.guilhermebury.countryinfo.details
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import com.guilhermebury.countryinfo.BaseApplication
+import com.guilhermebury.countryinfo.BaseActivity
 import com.guilhermebury.countryinfo.CountryQuery
 import com.guilhermebury.countryinfo.service.FetchCountry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class DetailsActivity : AppCompatActivity(), DetailsViewMvp.Listener {
+class DetailsActivity : BaseActivity(), DetailsViewMvp.Listener {
 
     private lateinit var detailsViewMvp: DetailsViewMvp
     private lateinit var countryCode: String
@@ -24,7 +23,7 @@ class DetailsActivity : AppCompatActivity(), DetailsViewMvp.Listener {
         super.onCreate(savedInstanceState)
         detailsViewMvp = DetailsViewMvp(LayoutInflater.from(this), null)
         countryCode = intent.extras!!.getString(EXTRA_COUNTRY_CODE)!!
-        fetchCountry = (application as BaseApplication).fetchCountry
+        fetchCountry = compositionRoot.fetchCountry
 
         setContentView(detailsViewMvp.rootView)
     }

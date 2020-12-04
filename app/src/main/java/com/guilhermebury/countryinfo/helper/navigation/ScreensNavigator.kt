@@ -1,4 +1,4 @@
-package com.guilhermebury.countryinfo.helper
+package com.guilhermebury.countryinfo.helper.navigation
 
 import android.app.Activity
 import com.guilhermebury.countryinfo.details.DetailsActivity
