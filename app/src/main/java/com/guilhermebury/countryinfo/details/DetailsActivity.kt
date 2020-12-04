@@ -5,12 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import com.guilhermebury.countryinfo.BaseApplication
 import com.guilhermebury.countryinfo.CountryQuery
 import com.guilhermebury.countryinfo.service.FetchCountry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 
 class DetailsActivity : AppCompatActivity(), DetailsViewMvp.Listener {
 
@@ -18,13 +18,13 @@ class DetailsActivity : AppCompatActivity(), DetailsViewMvp.Listener {
     private lateinit var countryCode: String
     private lateinit var country: CountryQuery.Country
 
-    private val fetchCountry: FetchCountry by inject()
+    private lateinit var fetchCountry: FetchCountry
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         detailsViewMvp = DetailsViewMvp(LayoutInflater.from(this), null)
-
         countryCode = intent.extras!!.getString(EXTRA_COUNTRY_CODE)!!
+        fetchCountry = (application as BaseApplication).fetchCountry
 
         setContentView(detailsViewMvp.rootView)
     }

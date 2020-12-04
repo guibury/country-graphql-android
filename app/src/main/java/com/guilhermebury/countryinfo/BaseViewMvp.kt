@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 
-open class BaseViewMvc<LISTENER_TYPE>(
+open class BaseViewMvp<LISTENER_TYPE>(
     private val layoutInflater: LayoutInflater,
     private val parent: ViewGroup?,
     @LayoutRes private val layoutId: Int

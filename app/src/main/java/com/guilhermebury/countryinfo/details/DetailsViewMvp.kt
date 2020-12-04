@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.guilhermebury.countryinfo.BaseViewMvc
+import com.guilhermebury.countryinfo.BaseViewMvp
 import com.guilhermebury.countryinfo.CountryQuery
 import com.guilhermebury.countryinfo.R
 import kotlinx.android.synthetic.main.details_view_mvp.view.*
 
 class DetailsViewMvp(inflater: LayoutInflater, parent: ViewGroup?
-): BaseViewMvc<DetailsViewMvp.Listener>(
+): BaseViewMvp<DetailsViewMvp.Listener>(
 inflater,
 parent,
 R.layout.details_view_mvp){
