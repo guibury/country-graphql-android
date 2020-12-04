@@ -1,12 +1,9 @@
 package com.guilhermebury.countryinfo.flags
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.guilhermebury.countryinfo.BaseViewMvc
-import com.guilhermebury.countryinfo.CountryQuery
 import com.guilhermebury.countryinfo.R
 import com.guilhermebury.countryinfo.helper.Countries
 import kotlinx.android.synthetic.main.flags_view_mvp.view.*
