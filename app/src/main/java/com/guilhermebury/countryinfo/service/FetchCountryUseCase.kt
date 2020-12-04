@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-class ApolloRequest {
+class FetchCountry {
 
     private val tag = "gbury.countryinfo"
     private val baseUrl = "https://countries.trevorblades.com/"
@@ -25,7 +25,7 @@ class ApolloRequest {
                 .enqueue(object : ApolloCall.Callback<Data>() {
                     override fun onResponse(@NotNull response: Response<Data>) {
                         Log.d(tag, response.data().toString())
-                        continuation.resume(ApolloParse().parseCountry(response))
+                        continuation.resume(ParseCountry().parseCountry(response))
                     }
 
                     override fun onFailure(e: ApolloException) {
@@ -36,7 +36,7 @@ class ApolloRequest {
     }
 }
 
-class ApolloParse {
+class ParseCountry {
 
     fun parseCountry(response: Response<Data>) : Country {
         val dataResponse = response.data()?.country()

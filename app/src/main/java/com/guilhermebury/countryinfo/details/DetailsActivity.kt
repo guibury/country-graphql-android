@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.guilhermebury.countryinfo.CountryQuery
-import com.guilhermebury.countryinfo.service.ApolloRequest
+import com.guilhermebury.countryinfo.service.FetchCountry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ class DetailsActivity : AppCompatActivity(), DetailsViewMvp.Listener {
     private lateinit var countryCode: String
     private lateinit var country: CountryQuery.Country
 
-    private val apolloRequest: ApolloRequest by inject()
+    private val fetchCountry: FetchCountry by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,7 @@ class DetailsActivity : AppCompatActivity(), DetailsViewMvp.Listener {
         detailsViewMvp.showLoading()
 
         GlobalScope.launch (Dispatchers.Main) {
-            country = apolloRequest.fetchCountry(countryCode)
+            country = fetchCountry.fetchCountry(countryCode)
 
             detailsViewMvp.onReceiveCountry(country)
             detailsViewMvp.hideLoading()
