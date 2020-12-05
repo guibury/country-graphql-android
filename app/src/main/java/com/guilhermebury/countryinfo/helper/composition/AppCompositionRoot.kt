@@ -1,12 +1,18 @@
 package com.guilhermebury.countryinfo.helper.composition
 
+import androidx.annotation.UiThread
 import com.apollographql.apollo.ApolloClient
+import com.guilhermebury.countryinfo.helper.Constants.BASE_URL
 import com.guilhermebury.countryinfo.service.FetchCountry
 import okhttp3.OkHttpClient
 
+@UiThread
 class AppCompositionRoot {
-    private val baseUrl = "https://countries.trevorblades.com/"
-    private val okHttpClient = OkHttpClient.Builder().build()
-    private val apolloClient: ApolloClient = ApolloClient.builder().serverUrl(baseUrl).okHttpClient(okHttpClient).build()
-    val fetchCountry: FetchCountry get() = FetchCountry(apolloClient) //get() to create a new instance on every call
+    //Lazy to don't add initialization time on app startup
+    private val okHttpClient : OkHttpClient by lazy {  OkHttpClient.Builder().build() }
+    private val apolloClient: ApolloClient by lazy {
+        ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build()
+    }
+    //get() to create a new instance on every call
+    val fetchCountry: FetchCountry get() = FetchCountry(apolloClient)
 }
