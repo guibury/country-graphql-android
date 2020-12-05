@@ -13,7 +13,7 @@ class FlagsActivity : BaseActivity(), FlagsViewMvp.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        flagsViewMvp = FlagsViewMvp(LayoutInflater.from(this), null) //Activity doesn't have a root view
+        flagsViewMvp =  compositionRoot.viewMvpFactory.newFlagsViewMvp(null)
         screensNavigator = compositionRoot.screensNavigator
 
         setContentView(flagsViewMvp.rootView)

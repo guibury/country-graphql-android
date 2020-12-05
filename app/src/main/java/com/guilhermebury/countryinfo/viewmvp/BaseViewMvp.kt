@@ -1,4 +1,4 @@
-package com.guilhermebury.countryinfo
+package com.guilhermebury.countryinfo.viewmvp
 
 import android.content.Context
 import android.view.LayoutInflater

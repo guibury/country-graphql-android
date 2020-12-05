@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.guilhermebury.countryinfo.BaseViewMvp
+import com.guilhermebury.countryinfo.viewmvp.BaseViewMvp
 import com.guilhermebury.countryinfo.CountryQuery
 import com.guilhermebury.countryinfo.R
 import kotlinx.android.synthetic.main.details_view_mvp.view.*

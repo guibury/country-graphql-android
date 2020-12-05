@@ -21,7 +21,7 @@ class DetailsActivity : BaseActivity(), DetailsViewMvp.Listener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        detailsViewMvp = DetailsViewMvp(LayoutInflater.from(this), null)
+        detailsViewMvp = compositionRoot.viewMvpFactory.newDetailsViewMvp(null)
         countryCode = intent.extras!!.getString(EXTRA_COUNTRY_CODE)!!
         fetchCountry = compositionRoot.fetchCountry
 
