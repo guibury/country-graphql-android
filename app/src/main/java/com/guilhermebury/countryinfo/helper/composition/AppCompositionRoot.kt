@@ -10,9 +10,7 @@ import okhttp3.OkHttpClient
 class AppCompositionRoot {
     //Lazy to don't add initialization time on app startup
     private val okHttpClient : OkHttpClient by lazy {  OkHttpClient.Builder().build() }
-    private val apolloClient: ApolloClient by lazy {
+    val apolloClient: ApolloClient by lazy {
         ApolloClient.builder().serverUrl(BASE_URL).okHttpClient(okHttpClient).build()
     }
-    //get() to create a new instance on every call
-    val fetchCountry: FetchCountry get() = FetchCountry(apolloClient)
 }
