@@ -43,7 +43,7 @@ class FlagsViewMvp(
         rootView.mexicoButton.setOnClickListener {onFlagClicked(Countries.MEXICO.code)}
     }
 
-    fun onFlagClicked(countryCode: String) {
+    private fun onFlagClicked(countryCode: String) {
         listeners(countryCode)
     }
 

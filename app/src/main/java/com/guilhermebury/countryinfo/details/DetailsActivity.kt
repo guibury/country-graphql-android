@@ -16,7 +16,6 @@ class DetailsActivity : BaseActivity(), DetailsViewMvp.Listener {
     private lateinit var detailsViewMvp: DetailsViewMvp
     private lateinit var countryCode: String
     private lateinit var country: CountryQuery.Country
-
     private lateinit var fetchCountry: FetchCountry
 
     override fun onCreate(savedInstanceState: Bundle?) {
