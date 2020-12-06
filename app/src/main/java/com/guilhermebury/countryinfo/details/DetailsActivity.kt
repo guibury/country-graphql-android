@@ -3,26 +3,27 @@ package com.guilhermebury.countryinfo.details
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import com.guilhermebury.countryinfo.BaseActivity
 import com.guilhermebury.countryinfo.CountryQuery
 import com.guilhermebury.countryinfo.service.FetchCountry
+import com.guilhermebury.countryinfo.viewmvp.ViewMvpFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class DetailsActivity : BaseActivity(), DetailsViewMvp.Listener {
 
-    private lateinit var detailsViewMvp: DetailsViewMvp
-    private lateinit var countryCode: String
-    private lateinit var country: CountryQuery.Country
-    private lateinit var fetchCountry: FetchCountry
+    lateinit var detailsViewMvp: DetailsViewMvp
+    lateinit var countryCode: String
+    lateinit var country: CountryQuery.Country
+    lateinit var fetchCountry: FetchCountry
+    lateinit var viewMvpFactory: ViewMvpFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        injector.inject(this)
         super.onCreate(savedInstanceState)
-        detailsViewMvp = compositionRoot.viewMvpFactory.newDetailsViewMvp(null)
+        detailsViewMvp = viewMvpFactory.newDetailsViewMvp(null)
         countryCode = intent.extras!!.getString(EXTRA_COUNTRY_CODE)!!
-        fetchCountry = compositionRoot.fetchCountry
 
         setContentView(detailsViewMvp.rootView)
     }

@@ -1,4 +1,4 @@
-package com.guilhermebury.countryinfo.helper.composition
+package com.guilhermebury.countryinfo.helper.dependencyinjection
 
 import android.app.Activity
 import android.view.LayoutInflater

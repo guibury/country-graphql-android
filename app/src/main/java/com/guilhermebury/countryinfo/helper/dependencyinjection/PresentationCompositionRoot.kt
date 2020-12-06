@@ -1,4 +1,4 @@
-package com.guilhermebury.countryinfo.helper.composition
+package com.guilhermebury.countryinfo.helper.dependencyinjection
 
 import com.guilhermebury.countryinfo.service.FetchCountry
 import com.guilhermebury.countryinfo.viewmvp.ViewMvpFactory

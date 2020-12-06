@@ -1,20 +1,21 @@
 package com.guilhermebury.countryinfo.flags
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import com.guilhermebury.countryinfo.BaseActivity
 import com.guilhermebury.countryinfo.helper.navigation.ScreensNavigator
+import com.guilhermebury.countryinfo.viewmvp.ViewMvpFactory
 
 //Icons made by https://www.flaticon.com/authors/freepik from https://www.flaticon.com/
 class FlagsActivity : BaseActivity(), FlagsViewMvp.Listener {
 
-    private lateinit var flagsViewMvp: FlagsViewMvp
-    private lateinit var screensNavigator: ScreensNavigator
+    lateinit var flagsViewMvp: FlagsViewMvp
+    lateinit var screensNavigator: ScreensNavigator
+    lateinit var viewMvpFactory: ViewMvpFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        injector.inject(this)
         super.onCreate(savedInstanceState)
-        flagsViewMvp =  compositionRoot.viewMvpFactory.newFlagsViewMvp(null)
-        screensNavigator = compositionRoot.screensNavigator
+        flagsViewMvp =  viewMvpFactory.newFlagsViewMvp(null)
 
         setContentView(flagsViewMvp.rootView)
     }

@@ -1,9 +1,8 @@
-package com.guilhermebury.countryinfo.helper.composition
+package com.guilhermebury.countryinfo.helper.dependencyinjection
 
 import androidx.annotation.UiThread
 import com.apollographql.apollo.ApolloClient
 import com.guilhermebury.countryinfo.helper.Constants.BASE_URL
-import com.guilhermebury.countryinfo.service.FetchCountry
 import okhttp3.OkHttpClient
 
 @UiThread
