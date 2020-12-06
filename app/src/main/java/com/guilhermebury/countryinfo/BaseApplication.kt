@@ -1,7 +1,7 @@
 package com.guilhermebury.countryinfo
 
 import android.app.Application
-import com.guilhermebury.countryinfo.helper.dependencyinjection.AppCompositionRoot
+import com.guilhermebury.countryinfo.dependencyinjection.AppCompositionRoot
 
 class BaseApplication : Application() {
 

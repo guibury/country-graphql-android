@@ -1,4 +1,4 @@
-package com.guilhermebury.countryinfo.helper.dependencyinjection
+package com.guilhermebury.countryinfo.dependencyinjection
 
 import androidx.annotation.UiThread
 import com.apollographql.apollo.ApolloClient

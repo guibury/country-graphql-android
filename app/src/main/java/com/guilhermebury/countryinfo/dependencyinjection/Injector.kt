@@ -1,4 +1,4 @@
-package com.guilhermebury.countryinfo.helper.dependencyinjection
+package com.guilhermebury.countryinfo.dependencyinjection
 
 import com.guilhermebury.countryinfo.details.DetailsActivity
 import com.guilhermebury.countryinfo.flags.FlagsActivity

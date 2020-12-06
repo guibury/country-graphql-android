@@ -1,9 +1,9 @@
 package com.guilhermebury.countryinfo
 
 import androidx.appcompat.app.AppCompatActivity
-import com.guilhermebury.countryinfo.helper.dependencyinjection.ActivityCompositionRoot
-import com.guilhermebury.countryinfo.helper.dependencyinjection.Injector
-import com.guilhermebury.countryinfo.helper.dependencyinjection.PresentationCompositionRoot
+import com.guilhermebury.countryinfo.dependencyinjection.ActivityCompositionRoot
+import com.guilhermebury.countryinfo.dependencyinjection.Injector
+import com.guilhermebury.countryinfo.dependencyinjection.PresentationCompositionRoot
 
 open class BaseActivity : AppCompatActivity() {
     private val appCompositionRoot get() =

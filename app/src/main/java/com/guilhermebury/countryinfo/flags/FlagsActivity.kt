@@ -2,7 +2,7 @@ package com.guilhermebury.countryinfo.flags
 
 import android.os.Bundle
 import com.guilhermebury.countryinfo.BaseActivity
-import com.guilhermebury.countryinfo.helper.navigation.ScreensNavigator
+import com.guilhermebury.countryinfo.navigation.ScreensNavigator
 import com.guilhermebury.countryinfo.viewmvp.ViewMvpFactory
 
 //Icons made by https://www.flaticon.com/authors/freepik from https://www.flaticon.com/

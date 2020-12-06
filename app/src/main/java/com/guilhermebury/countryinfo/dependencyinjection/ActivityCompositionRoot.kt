@@ -1,8 +1,8 @@
-package com.guilhermebury.countryinfo.helper.dependencyinjection
+package com.guilhermebury.countryinfo.dependencyinjection
 
 import android.app.Activity
 import android.view.LayoutInflater
-import com.guilhermebury.countryinfo.helper.navigation.ScreensNavigator
+import com.guilhermebury.countryinfo.navigation.ScreensNavigator
 
 class ActivityCompositionRoot(
     private val activity: Activity,
