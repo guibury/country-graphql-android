@@ -1,4 +1,4 @@
-package com.guilhermebury.countryinfo.dependencyinjection
+package com.guilhermebury.countryinfo.dependencyinjection.presentation
 
 import com.guilhermebury.countryinfo.navigation.ScreensNavigator
 import com.guilhermebury.countryinfo.service.FetchCountry

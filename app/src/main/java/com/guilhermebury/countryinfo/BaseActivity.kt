@@ -1,22 +1,23 @@
 package com.guilhermebury.countryinfo
 
 import androidx.appcompat.app.AppCompatActivity
-import com.guilhermebury.countryinfo.dependencyinjection.ActivityCompositionRoot
-import com.guilhermebury.countryinfo.dependencyinjection.DaggerPresentationComponent
-import com.guilhermebury.countryinfo.dependencyinjection.Injector
-import com.guilhermebury.countryinfo.dependencyinjection.PresentationModule
+import com.guilhermebury.countryinfo.dependencyinjection.*
+import com.guilhermebury.countryinfo.dependencyinjection.activity.ActivityModule
+import com.guilhermebury.countryinfo.dependencyinjection.presentation.PresentationModule
 
 open class BaseActivity : AppCompatActivity() {
     private val appCompositionRoot get() =
-        (application as BaseApplication).appCompositionRoot
+        (application as BaseApplication).appComponent
 
-    private val activityCompositionRoot by lazy {
-        ActivityCompositionRoot(this, appCompositionRoot)
+    private val activityComponent by lazy {
+        DaggerActivityComponent.builder()
+                .activityModule(ActivityModule(this, appCompositionRoot))
+                .build()
     }
 
     private val presentationComponent by lazy {
-        DaggerPresentationComponent.builder().presentationModule(
-            PresentationModule(activityCompositionRoot))
+        DaggerPresentationComponent.builder()
+            .presentationModule(PresentationModule(activityComponent))
             .build()
     }
     protected val injector get() = Injector(presentationComponent)
