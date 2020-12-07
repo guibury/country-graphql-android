@@ -3,6 +3,8 @@ package com.guilhermebury.countryinfo
 import androidx.appcompat.app.AppCompatActivity
 import com.guilhermebury.countryinfo.dependencyinjection.*
 import com.guilhermebury.countryinfo.dependencyinjection.activity.ActivityModule
+import com.guilhermebury.countryinfo.dependencyinjection.activity.DaggerActivityComponent
+import com.guilhermebury.countryinfo.dependencyinjection.presentation.DaggerPresentationComponent
 import com.guilhermebury.countryinfo.dependencyinjection.presentation.PresentationModule
 
 open class BaseActivity : AppCompatActivity() {
